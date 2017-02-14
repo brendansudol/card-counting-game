@@ -5,8 +5,6 @@ export const deck = () => ([
   'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'SJ', 'SQ', 'SK', 'SA',
 ])
 
-export const rand = () => ~~(Math.random() * 100)
-
 export const shuffle = arr => {
   let counter = arr.length
 
@@ -26,3 +24,9 @@ export const shuffle = arr => {
 export const makeShoe = (n = 6) => (
   [].concat(...[...Array(n)].map(_ => shuffle(deck())))
 )
+
+export const randBetween = (min, max) => (
+  Math.floor(Math.random() * (max - min + 1) + min)
+)
+
+export const rand = () => randBetween(2, 5)
