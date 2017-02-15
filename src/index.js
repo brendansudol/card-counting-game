@@ -8,6 +8,7 @@ import { newGame } from './actions'
 import reducer from './reducers'
 import App from './containers/App'
 
+
 const middleware = [createLogger()]
 const store = createStore(
     reducer,

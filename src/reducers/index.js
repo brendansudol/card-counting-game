@@ -1,28 +1,45 @@
 import { NEW_GAME, DEAL_CARDS, TOGGLE_COUNT } from '../actions'
+import { getCount } from '../util'
+
 
 const init = {
-  cards: [],
-  count: 0,
+  shoe: [],
   idx: 0,
   rand: 0,
+  count: 0,
   is_visible: false,
+}
+
+const start = (state, action) => {
+  const { shoe, rand } = action
+
+  return {
+    ...init,
+    shoe,
+    rand,
+    count: getCount(0, shoe.slice(0, rand)), 
+  }
+}
+
+const deal = (state, action) => {
+  const { rand } = action
+  const idx = state.idx + state.rand
+  const cards = state.shoe.slice(idx, idx + rand)
+
+  return {
+    ...state,
+    idx,
+    rand,
+    count: getCount(state.count, cards),
+  }
 }
 
 const game = (state = init, action) => {
   switch (action.type) {
     case NEW_GAME:
-      return {
-        ...init,
-        cards: action.cards,
-        rand: action.rand,
-      }
+      return start(state, action)
     case DEAL_CARDS:
-      return {
-        ...state,
-        count: state.count + action.rand,
-        idx: state.idx + state.rand,
-        rand: action.rand,
-      }
+      return deal(state, action)
     case TOGGLE_COUNT:
       return {
         ...state,

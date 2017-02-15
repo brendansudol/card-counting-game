@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Game from '../components/Game'
 import * as Actions from '../actions'
 
+
 const App = ({ game, actions }) => (
   <div>
     <Game game={game} actions={actions} />
