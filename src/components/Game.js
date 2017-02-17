@@ -6,8 +6,8 @@ const Game = ({ game, actions }) => {
   const cards = shoe.slice(idx, idx + rand)
 
   return (
-    <div>
-      <pre>{JSON.stringify({ idx, rand, count, is_visible }, null, 2)}</pre>
+    <div style={{ padding: 32 }}>
+      <h1>What’s the count?</h1>
       <div>
         {cards.map((c, i) =>
           <img
@@ -18,11 +18,15 @@ const Game = ({ game, actions }) => {
           />
         )}
       </div>
+      <p>cards seen: {idx + rand}</p>
       <p>
-        <button onClick={actions.deal}>next</button>
-        <button onClick={actions.toggleCount}>show/hide</button>
-        <button onClick={actions.newGame}>new game</button>
+        <button onClick={actions.toggleCount}>
+          {is_visible ? 'hide' : 'show'} count
+        </button>
+        <button onClick={actions.newGame}>reset</button>
+        <button onClick={actions.deal}>deal</button>
       </p>
+      {is_visible && <h2>{count}</h2>}
     </div>
   )
 }
