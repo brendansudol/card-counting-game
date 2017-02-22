@@ -4,7 +4,7 @@ export const randBetween = (min, max) => (
   Math.floor(Math.random() * (max - min + 1) + min)
 )
 
-export const rand = () => randBetween(2, 5)
+export const rand = () => randBetween(2, 4)
 
 export const shuffle = arr => {
   let counter = arr.length

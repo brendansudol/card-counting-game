@@ -1,32 +1,58 @@
 import React from 'react'
 
+import Footer from './Footer'
+import Header from './Header'
+
 
 const Game = ({ game, actions }) => {
   const { shoe, idx, rand, count, is_visible } = game
-  const cards = shoe.slice(idx, idx + rand)
+  const idxEnd = idx + rand
+  const cards = shoe.slice(idx, idxEnd)
 
   return (
-    <div style={{ padding: 32 }}>
-      <h1>What’s the count?</h1>
-      <div>
+    <div className='p3 mx-auto' style={{ maxWidth: 600 }}>
+      <Header />
+      <div className='mb3'>
         {cards.map((c, i) =>
           <img
             key={i}
             alt={c}
+            className='mr1'
             src={`${process.env.PUBLIC_URL}/img/cards/${c}.svg`}
-            style={{ marginRight: 8, width: 100 }}
+            style={{ width: 100 }}
           />
         )}
       </div>
-      <p>cards seen: {idx + rand}</p>
-      <p>
-        <button onClick={actions.toggleCount}>
-          {is_visible ? 'hide' : 'show'} count
+      <div className='mb2'>
+        <button
+          className='btn btn-primary bg-red'
+          onClick={actions.toggleCount}
+          style={{ width: 130 }}
+        >
+          {is_visible ? 'Hide' : 'Show'} count
         </button>
-        <button onClick={actions.newGame}>reset</button>
-        <button onClick={actions.deal}>deal</button>
+        {is_visible &&
+          <span className='ml2 h3 bold align-middle'>{count}</span>
+        }
+      </div>
+      <div className='mb2'>
+        <button
+          className='btn btn-primary bg-black mr2'
+          onClick={actions.newGame}
+        >
+          Reset
+        </button>
+        <button
+          className='btn btn-primary bg-black'
+          onClick={actions.deal}
+        >
+          More cards →
+        </button>
+      </div>
+      <p className='h5'>
+        Cards seen: {idxEnd} ({shoe.length - idxEnd} remaining)
       </p>
-      {is_visible && <h2>{count}</h2>}
+      <Footer />
     </div>
   )
 }
