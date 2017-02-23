@@ -19,7 +19,7 @@ const Game = ({ game, actions }) => {
             alt={c}
             className='mr1'
             src={`${process.env.PUBLIC_URL}/img/cards/${c}.svg`}
-            style={{ width: 100 }}
+            style={{ width: 100, height: 139 }}
           />
         )}
       </div>
