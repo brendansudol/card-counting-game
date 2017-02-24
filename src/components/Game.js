@@ -27,9 +27,9 @@ const Game = ({ game, actions }) => {
         <button
           className='btn btn-primary bg-red'
           onClick={actions.toggleCount}
-          style={{ width: 130 }}
+          style={{ width: 210 }}
         >
-          {is_visible ? 'Hide' : 'Show'} count
+          {is_visible ? 'Hide' : 'Show'} running count
         </button>
         {is_visible &&
           <span className='ml2 h3 bold align-middle'>{count}</span>
