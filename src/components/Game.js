@@ -8,6 +8,7 @@ const Game = ({ game, actions }) => {
   const { shoe, idx, rand, count, is_visible } = game
   const idxEnd = idx + rand
   const cards = shoe.slice(idx, idxEnd)
+  const isOver = idxEnd >= shoe.length
 
   return (
     <div className='p3 mx-auto' style={{ maxWidth: 600 }}>
@@ -44,13 +45,17 @@ const Game = ({ game, actions }) => {
         </button>
         <button
           className='btn btn-primary bg-black'
+          disabled={isOver}
           onClick={actions.deal}
         >
           More cards →
         </button>
       </div>
       <p className='h5'>
-        Cards seen: {idxEnd} ({shoe.length - idxEnd} remaining)
+        {isOver
+          ? `Nice! You just went through ${shoe.length} cards 🎉`
+          : `Cards seen: ${idxEnd} (${shoe.length - idxEnd} remaining)`
+        }
       </p>
       <Footer />
     </div>
